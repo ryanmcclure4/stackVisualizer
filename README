@@ -1,0 +1,54 @@
+Compile with a C compiler and make an executable.  
+Run it like any other C program.  
+ 
+It'll ask you to specify the number of variables you are going to input.  
+When you enter your variables, the name must only be one character long.  
+Input should look exactly like this:
+ 
+     int a
+     char b
+     long c
+ 
+Don't end the lines with a semicolon, just press enter and input each 
+variable on a new line.  
+ 
+It can accept a char, short, int, long, float, and double.  Making any 
+of these unsigned or constant won't change the output. An 'X' represents 
+padding, so don't name any variables 'X' because then you won't know where 
+the variable really is.  At this point, it can't deal with arrays.
+ 
+I currently have it set to hold 50 stack frames, but if you want more you 
+can change STACKSIZE
+
+EXAMPLE OUTPUT:
+
+Number of variables to initialize : 12
+int a
+char b
+short c
+int d
+float e
+double f
+float g
+char h
+char i
+char j
+short k
+char l
+	 _______________________________
+	|        |             |        |
+	| OFFSET |    STACK    | MEMORY |
+	|________|_____________|________|
+	|                               |
+	|	 ---------------   LOW  |
+	|  -36	| X | l |   k   |   ^   |
+	|  -32	| X | j | i | h |   ^   |
+	|  -28	|       g       |   ^   |
+	|  -24	|       f       |   ^   |
+	|  -20	|       f       |   ^   |
+	|  -16	|       e       |   ^   |
+	|  -12	|       d       |   ^   |
+	|  -8	|   c   | X | b |   ^   |
+	|  -4	|       a       |   ^   |
+	|  %fp -> --------------   HIGH |
+	|_______________________________|
